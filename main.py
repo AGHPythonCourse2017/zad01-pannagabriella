@@ -1,11 +1,14 @@
 from miditime.miditime import MIDITime
 
 from FunctionGenerator import FunctionGenerator
+from NoteGenerator import NoteGenerator
 
 function_generator = FunctionGenerator(10, 10);
-fun = function_generator.generateFunction()
+function = function_generator.generateFunction()
+note_generator = NoteGenerator(100000, 10000, 20)
+notes = note_generator.generateNotes(function)
+print(notes)
 
-print(fun(2))
 
 #gen = Generator()
 #notes = gen.generate()
