@@ -3,7 +3,7 @@ from FunctionGenerator import FunctionGenerator
 from NoteGenerator import NoteGenerator
 from SongGenerator import SongGenerator
 
-def addArguments(argparser):
+def add_arguments(argparser): #add arguments
     argparser.add_argument('--name', type = str, help = 'name for song to output, default: mytrack', default = "mytrack")
     argparser.add_argument('--speed', type = int, help = 'your song\'s speed [10, 10000], default: 120', default = 120)
     argparser.add_argument('--mode', type = int, help = '0 - curvy style, 1 - slight style, default: 0', default = 0)
@@ -14,7 +14,7 @@ def addArguments(argparser):
     argparser.add_argument('--notes_amount', type = int, help = 'how many notes in song [10,10000], default: 100', default = 100)
     return argparser
 
-def checkArguments(args):
+def check_arguments(args): #check if arguments are correct
     if(args.speed < 10 or args.speed > 10000):
         print("Wrong speed")
         return False
@@ -39,17 +39,17 @@ def checkArguments(args):
     return True
 
 
-argparser = ArgumentParser(description='Generate some crazy music based on mathematics (math is crazy)')
-argparser = addArguments(argparser)
+argparser = ArgumentParser(description = 'Generate some crazy music based on mathematics (math is crazy)')
+argparser = add_arguments(argparser)
 
 args = argparser.parse_args()
 
-if (checkArguments(args)):
+if (check_arguments(args)):
     function_generator = FunctionGenerator(args.zeros_range, args.zeros_amount);
-    function = function_generator.generateFunction()
+    function = function_generator.generate_function()
     note_generator = NoteGenerator(args.field, args.notes_amount)
-    notes = note_generator.generateNotes(function)
+    notes = note_generator.generate_notes(function)
 
     file_name = args.name + ".mid"
     song_generator = SongGenerator(file_name, args.speed, args.mode, args.notes_range, notes)
-    song_generator.generateSong()
+    song_generator.generate_song()
