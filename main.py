@@ -53,3 +53,4 @@ if (check_arguments(args)):
     file_name = args.name + ".mid"
     song_generator = SongGenerator(file_name, args.speed, args.mode, args.notes_range, notes)
     song_generator.generate_song()
+
